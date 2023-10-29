@@ -1,23 +1,62 @@
 import { Link } from "react-router-dom";
 import './../stylesheets/header.css';
-import { useState , useEffect } from "react";
-
-
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 export default function Header() {
 
-    
+    const [username, setUsername] = useState("");
+    const [cookie , setCookie , removeCookie] = useCookies('token');
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const checkCookie = async () => {
+            const options = {
+                method: "GET",
+                credentials: 'include'
+            }
+            await fetch("http://localhost:8000/api/check", options).then(
+                async (response) => {
+                    const text = await response.text();
+                    if (response.status !== 200) {
+                        console.log("reponse not ok");
+                        
+                    }
+
+                    else {
+                        console.log(text);
+                        setUsername(text);
+                    }
+
+                }
+            ).catch(error => {
+                console.log(error);
+            });
+        };
+
+        checkCookie();
+    }, []);
+
+
+    function logout() {
+        
+        removeCookie('token');
+        setUsername(null);
+        return navigate("/");
+
+    }
+
+
     return (
         <div className="header">
-            
-            <Link to="/" className = "title"><p>ByteBlog</p></Link>
-            <div className = "side-buttons">
-                <Link to={"login"}>
-                    <button>Login</button>
-                </Link>
-                <Link to={"register"}>
-                    <button>Register</button>
-                </Link>
+
+            <Link to="/" className="title"><p>ByteBlog</p></Link>
+            <div className="side-buttons">
+                {username && <Link to="/post" > <button>Post</button></Link>}
+                {username && <button onClick={logout}>Logout</button>}
+                {!username && <Link to={"login"}> <button>Login</button></Link>}
+                {!username && <Link to={"register"}><button>Register</button></Link>}
             </div>
         </div>
     )
