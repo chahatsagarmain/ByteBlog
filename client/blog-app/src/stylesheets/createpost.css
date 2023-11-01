@@ -1,0 +1,25 @@
+.create-post{
+    display: flex;
+    flex-direction: column;
+    margin : 1em 5em 5em 5em;
+    max-width: 80%;
+}
+
+.create-post .text{
+    height: 4vh;
+    margin: 1em 0em 0em 0em;
+}
+
+.create-post .input-image{
+    height: 4vh;
+    margin : 1em 0em 0em 0em;
+}
+
+.create-post textarea{
+    margin : 1em 0em 0em 0em;
+}
+
+.create-post button{
+    margin-top: 1em;
+    height: 4vh;
+}

@@ -1,14 +1,11 @@
-import './../stylesheets/loginpage.css'
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import './../stylesheets/loginpage.css';
+import { useContext } from 'react';
+import { UserContext } from '../context /UserContext';
+import { useNavigate } from 'react-router';
 
 export default function LoginPage() {
-
     const navigate = useNavigate();
-    const [credential, setcredential] = useState([{
-        password: "",
-        email: "",
-    }])
+    const {credential , setcredential} = useContext(UserContext);
 
     function inputChange(prop) {
         const name = prop.target.name;

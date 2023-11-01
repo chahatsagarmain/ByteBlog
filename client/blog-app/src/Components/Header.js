@@ -2,13 +2,16 @@ import { Link } from "react-router-dom";
 import './../stylesheets/header.css';
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../context /UserContext";
+import { useContext } from "react";
 import { useCookies } from "react-cookie";
 
 export default function Header() {
 
-    const [username, setUsername] = useState("");
-    const [cookie , setCookie , removeCookie] = useCookies('token');
+    const {username , setUsername} = useContext(UserContext);
     const navigate = useNavigate();
+    const [cookie , setCookie , removeCookie] = useCookies('token');
+
 
     useEffect(() => {
         const checkCookie = async () => {
