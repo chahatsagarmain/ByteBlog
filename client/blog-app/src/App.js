@@ -50,8 +50,8 @@ function App() {
     {
       title : "",
       summary : "",
-      image : "",
-      description : ""
+      image : null,
+      description : "",
     }
   )
   const [credential, setcredential] = useState([{
