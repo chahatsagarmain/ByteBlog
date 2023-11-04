@@ -43,9 +43,9 @@ export default function CreatePost() {
         var response = await fetch('http://localhost:8000/api/postblog', options).catch(error => console.log(error));
         console.log("sent");
         try {
-            response = await response.json();
             if (response.status === 200) {
                 const data = await response.json();
+                alert("Blog created");
                 console.log(data);
             }
             else {

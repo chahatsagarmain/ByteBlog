@@ -12,7 +12,7 @@ async function createPost(req, res) {
 
         const decodedData = await jwt.decode(token);
 
-        const blog = new postModel({ title: title, summary: summary, description: description, author: decodedData.username , image : req.file});
+        const blog = new postModel({ title: title, summary: summary, description: description, author: decodedData.username , image : req.files[0].filename});
 
         await blog.save();
 

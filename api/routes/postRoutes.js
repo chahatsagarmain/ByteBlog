@@ -3,19 +3,20 @@ const express = require('express');
 const router = express.Router();
 const multer = require('multer');
 
-// const storage = multer.diskStorage(
-//     {
-//         destination: function (req, file, cb) {
-//             cb(null, 'imageUploads');
-//         },
-//         filename: function (req, file, cb) {
-//             const uniqueFileName = file.fieldname + Date.now();
-//             cb(null, uniqueFileName);
-//         }
-//     }
-// )
+const storage = multer.diskStorage(
+    {
+        destination: function (req, file, cb) {
+            cb(null, 'imageUploads');
+        },
+        filename: function (req, file, cb) {
+            const uniqueFileName = file.fieldname + Date.now();
+            cb(null, uniqueFileName);
+        }
+    }
+)
 
-const upload = multer({ dest : "./imageUploads"});
+//const upload = multer({ dest : "./imageUploads"});
+const upload = multer({storage : storage});
 
 router.post('/postblog' , upload.any(),postController.createPost);
 router.post('/test' , (req , res) => {
