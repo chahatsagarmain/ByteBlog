@@ -8,7 +8,10 @@
     border-width : 0em 0em 0.1em;
     border-style : solid;
     border-color : lightgrey;
+    color : black;
+    background-color: #ffff;
 }
+
 
 .title{
     font-family: 'Ubuntu', sans-serif;
@@ -22,10 +25,27 @@
     font-family: 'Ubuntu', sans-serif;
     font-size : 1rem;
     border : none;
-    margin: 0.5em;
+    margin: 0.3em 0.5em 0.5em 0.5em;
     padding: 0.5em;
     border-radius: 0.2em;
     margin-top : 1em;
+    float: right;
+    max-width: fit-content;
+}
 
+#mode-logo{
+    max-height: 100%;
+    max-width: 100%;
+    float : right;
+}
 
+#mode-button{
+    border : none;
+    margin: 0.5em 0.5em 0.5em 0.5em;
+    float: right;
+    width: 8%;
+    max-width: 10%;
+    height: 70%;
+    background-color: inherit;
+    color: inherit;
 }

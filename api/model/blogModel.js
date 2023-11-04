@@ -26,7 +26,7 @@ const postSchema = new Schema({
     },
 
     image : {
-        filename : String
+        type : String
     },
 
     description : {

@@ -14,6 +14,11 @@ export default function CreatePost() {
         console.log(event.target.value);
         setPost({ ...post, [name]: event.target.value });
     }
+
+    function handleFileChange(event){
+        const name = event.target.name;
+        setPost({...post , [name] : event.target.files[0]});
+    }
     function submit(ev) {
         ev.preventDefault();
         submitPost();
@@ -26,18 +31,19 @@ export default function CreatePost() {
         formData.append('title', post.title);
         formData.append('summary', post.summary);
         formData.append('description', post.description);
-        formData.append('image', post.image);
+        formData.append('file', post.file);
 
         const options = {
             method: 'POST',
-            body: JSON.stringify(formData),
-            headers: { 'Content-type': 'application/json' },
+            body: formData,
             credentials: 'include'
         }
-
-        const response = await fetch('http://localhost:8000/api/postblog', options).catch(error => console.log(error));
+        console.log(post);
+        console.log(formData);
+        var response = await fetch('http://localhost:8000/api/postblog', options).catch(error => console.log(error));
         console.log("sent");
         try {
+            response = await response.json();
             if (response.status === 200) {
                 const data = await response.json();
                 console.log(data);
@@ -52,12 +58,12 @@ export default function CreatePost() {
         }
 
     }
-
     return (
-        <div className="create-post">
+        <div className="create-post" >
             <h1 className='create-post-title'>Create Post</h1>
             <div className="create-post-form">
-            <form encType="multipart/form-data">
+        
+            <form enctype="multipart/form-data">
                 <input
                     type="text"
                     placeholder="Title of Blog"
@@ -74,9 +80,9 @@ export default function CreatePost() {
                 />
                 <input
                     type="file"
-                    name="image"
+                    name="file"
                     className='input-image'
-                    onChange={handleInputChange}
+                    onChange={handleFileChange}
                 />
                 <textarea
                     name="description"

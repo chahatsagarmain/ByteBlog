@@ -7,7 +7,6 @@ import LoginPage from './Components/LoginPage';
 import RegisterPage from './Components/RegisterPage';
 import { UserContext } from './context /UserContext';
 import { useState } from 'react';
-import { useNavigate } from "react-router-dom";
 import CreatePost from './Components/CreatePost';
 
 const cards = [<Card />, <Card />];
@@ -50,7 +49,7 @@ function App() {
     {
       title : "",
       summary : "",
-      image : null,
+      file : null,
       description : "",
     }
   )
@@ -61,10 +60,12 @@ function App() {
     confirmpassword: ""
   }]);
 
+  const [isDark , setDark] = useState(false);
+
 
   return (
     <React.StrictMode>
-      <UserContext.Provider value={{ credential, setcredential ,username, setUsername , post , setPost}}>
+      <UserContext.Provider value={{ credential, setcredential ,username, setUsername , post , setPost , isDark , setDark}}>
         <RouterProvider router={router} />
       </UserContext.Provider>
     </React.StrictMode>

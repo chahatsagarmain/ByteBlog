@@ -4,22 +4,7 @@ const app = express();
 const cors = require('cors');
 const mongoose = require('mongoose');
 const cookieParser = require("cookie-parser");
-const multer = require('multer');
 const postRouter = require('./routes/postRoutes');
-
-const storage = multer.diskStorage(
-    {
-        destination : function (req , file , cb) {
-            cb(null , 'imageUploads');
-        },
-        filename : function(req , file , cb ) {
-            const uniqueFileName = file.fieldname + Date.now();
-            cb(null , uniqueFileName);
-        }
-    }
-)
-
-const upload = multer({storage : storage});
 
 function connect(){
     try{
@@ -32,15 +17,15 @@ function connect(){
 }
 
 connect();
-
-app.use(cookieParser());
 app.use(cors({
     credentials : true,
     origin : "http://localhost:3000"
 }));
+app.use(cookieParser());
+
 app.use(express.json());
 app.use("/api" , postRouter);
 app.use("/api" , userRouter);
 
 
-module.exports = {app , upload};
+module.exports = {app};
