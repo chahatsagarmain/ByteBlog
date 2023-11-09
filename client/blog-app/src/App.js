@@ -2,14 +2,14 @@ import './App.css';
 import Layout from './Components/Layout';
 import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Card from './Components/Card';
 import LoginPage from './Components/LoginPage';
 import RegisterPage from './Components/RegisterPage';
 import { UserContext } from './context /UserContext';
 import { useState } from 'react';
 import CreatePost from './Components/CreatePost';
+import Post from './Components/Post';
+import MainPage from './Components/MainPage';
 
-const cards = [<Card />, <Card />];
 
 const router = createBrowserRouter(
   [
@@ -21,7 +21,7 @@ const router = createBrowserRouter(
         {
           //used for nested routes , This is replacing the outlet with cards component
           path: "/",
-          element: cards
+          element: <MainPage />
         },
         {
           path: "/login",
@@ -33,8 +33,12 @@ const router = createBrowserRouter(
           element: <RegisterPage />
         },
         {
-          path: "/post",
+          path: "/createpost",
           element: <CreatePost />
+        },
+        {
+          path: "/post/:id",
+          element: <Post />
         }
 
       ]
@@ -45,6 +49,7 @@ const router = createBrowserRouter(
 function App() {
 
   const [username, setUsername] = useState("");
+  const [posts , setPosts] = useState([{}]);
   const [post , setPost] = useState(
     {
       title : "",
@@ -65,7 +70,7 @@ function App() {
 
   return (
     <React.StrictMode>
-      <UserContext.Provider value={{ credential, setcredential ,username, setUsername , post , setPost , isDark , setDark}}>
+      <UserContext.Provider value={{ credential, setcredential ,username, setUsername , post , setPost , isDark , setDark , posts , setPosts}}>
         <RouterProvider router={router} />
       </UserContext.Provider>
     </React.StrictMode>

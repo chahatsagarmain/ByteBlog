@@ -9,7 +9,7 @@ const storage = multer.diskStorage(
             cb(null, 'imageUploads');
         },
         filename: function (req, file, cb) {
-            const uniqueFileName = file.fieldname + Date.now();
+            const uniqueFileName = file.fieldname + Date.now() + ".jpg";
             cb(null, uniqueFileName);
         }
     }
@@ -23,5 +23,6 @@ router.post('/test' , (req , res) => {
     console.log(req.body);
     return res.status(200);
 })
-
+router.get("/posts" , postController.mainPagePosts);
+router.get("/blog/:id", postController.postRetreival)
 module.exports = router;

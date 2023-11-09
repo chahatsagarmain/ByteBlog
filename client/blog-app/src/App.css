@@ -7,11 +7,9 @@
 
 .card{
   position : relative;
-  width: 50%;
   max-width: 80%;
   display: flex;
   justify-content: center;
-  border : 0.2em solid lightgrey;
   border-radius: 10px;
   max-height: 500px;
   left : 15%;
@@ -30,6 +28,7 @@ main{
 
 .card img{
   max-width: 80%;
+  max-height: 80%;
   width : 300px;
   height: 250px;
 }
@@ -41,13 +40,6 @@ main{
   color: inherit;
 }
 
-.card-title:hover {
-  color : lightslategrey;
-}
-
-.card-title:visited {
-  color : lightslategrey;
-}
 .card-info{
   width: 40%;
   overflow-y: auto;

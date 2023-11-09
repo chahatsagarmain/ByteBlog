@@ -1,12 +1,12 @@
 import './../stylesheets/createpost.css';
 import { UserContext } from '../context /UserContext';
 import { useContext } from 'react';
-
+import { useNavigate } from 'react-router';
 
 
 export default function CreatePost() {
 
-
+    const navigate = useNavigate();
     const { post, setPost } = useContext(UserContext);
 
     function handleInputChange(event) {
@@ -47,6 +47,7 @@ export default function CreatePost() {
                 const data = await response.json();
                 alert("Blog created");
                 console.log(data);
+                return navigate("/");
             }
             else {
                 alert('Error creating Post');

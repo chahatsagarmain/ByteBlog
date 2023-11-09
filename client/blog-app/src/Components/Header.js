@@ -73,7 +73,7 @@ export default function Header() {
             <Link to="/" className="title"><p>ByteBlog</p></Link>
             <div className="side-buttons">
                 
-                {username && <Link to="/post" > <button>Post</button></Link>}
+                {username && <Link to="/createpost" > <button>Post</button></Link>}
                 {username && <button onClick={logout}>Logout</button>}
                 {!username && <Link to={"login"}> <button>Login</button></Link>}
                 {!username && <Link to={"register"}><button>Register</button></Link>}
