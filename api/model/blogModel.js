@@ -32,8 +32,17 @@ const postSchema = new Schema({
     description : {
         type : String,
         required : true
-    }
+    },
 
+    likes : {
+        type : Number,
+        default : 0
+    },
+
+    dislikes : {
+        type : Number,
+        default : 0
+    },
 });
 
 const postModel = mongoose.model('post' , postSchema);

@@ -56,6 +56,8 @@ function App() {
       summary : "",
       file : null,
       description : "",
+      like : 0,
+      dislike : 0
     }
   )
   const [credential, setcredential] = useState([{
