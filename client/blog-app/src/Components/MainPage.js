@@ -35,7 +35,6 @@ export default function MainPage() {
 
     return (
         <div className="main">
-            <h1 id="title">Recent Posts:</h1>
             {posts && posts.map((value , idx) => {
                 console.log(value , "map");
                 return <Card key={idx} props={value}/>

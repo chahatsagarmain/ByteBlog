@@ -1,6 +1,17 @@
 import './../stylesheets/footer.css';
+import instaicon from "./../resources/icons/instagram.png";
+import twittericon from "./../resources/icons/twitter.png";
+import discordicon from "./../resources/icons/discord.png";
+
 
 export default function Footer(){
+
+    function redirectLink(event){
+        const link = event.target.id;
+        console.log(link);
+        window.location.href = "https://www." + link + ".com"
+
+    }
 
     return (
         <div className="footer">
@@ -17,26 +28,35 @@ export default function Footer(){
                 <table>
                     <tr>
                         <td>   
-                            <img src = "./../resources/icons/instagram.png" alt = "Instagram Logo"></img>
+                            <img src = {instaicon} 
+                            alt = {"Instagram Logo"}
+                            onClick={redirectLink}
+                            id="instagram"></img>
                         </td>
                         <td>
-                            <p>Instagram Link</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img src = "./../resources/icons/instagram.png" alt = "Twitter Logo"></img>
-                        </td>
-                        <td>
-                            <p>Twitter Link</p>
+                            <p>Instagram</p>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <img src = "./../resources/icons/instagram.png" alt = "Discord Logo"></img>
+                            <img src = {twittericon} 
+                            alt = "Twitter Logo"
+                            id = "twitter"
+                            onClick={redirectLink}></img>
                         </td>
                         <td>
-                            <p>Discord Link</p>
+                            <p>Twitter</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src = {discordicon} 
+                            alt = "Discord Logo"
+                            onClick={redirectLink}
+                            id = "discord"></img>
+                        </td>
+                        <td>
+                            <p>Discord</p>
                         </td>
                     </tr>
                 </table>

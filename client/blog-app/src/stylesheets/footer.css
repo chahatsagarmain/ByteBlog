@@ -24,3 +24,8 @@
 td{
     margin : 0.5em;
 }
+
+.footer img{
+    max-height: 2.5em;
+    margin-right: 0.5rem;
+}

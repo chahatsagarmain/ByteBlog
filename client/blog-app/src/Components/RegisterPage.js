@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router';
 export default function LoginPage() {
     const navigate = useNavigate();
     const {credential , setcredential} = useContext(UserContext);
+    const {isAuthenticated , setAuthentication} = useContext(UserContext);
+
 
     function inputChange(prop) {
         const name = prop.target.name;
@@ -27,7 +29,8 @@ export default function LoginPage() {
 
         if(response.ok){
             console.log("ok");
-            return navigate("/");
+            navigate("/");
+            setAuthentication(true);
 
         }
         else{

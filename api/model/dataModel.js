@@ -31,6 +31,10 @@ const userSchema = new Schema({
 
     author : {
         type : mongoose.Schema.Types.ObjectId
+    },
+
+    liked : {
+        type : mongoose.Schema.Types.ObjectId
     }
 });
 

@@ -10,11 +10,12 @@ import nightlogo from '../resources/icons/night-mode.png';
 
 export default function Header() {
 
-    const { username, setUsername, isDark, setDark } = useContext(UserContext);
+    const {username , setUsername , isDark , setDark} = useContext(UserContext);
     const navigate = useNavigate();
-    const [cookie, setCookie, removeCookie] = useCookies('token');
+    const [cookie , setCookie , removeCookie] = useCookies('token');
+    const {isAuthenticated , setAuthentication} = useContext(UserContext);
 
-
+    
     useEffect(() => {
         const checkCookie = async () => {
             const options = {
@@ -26,7 +27,7 @@ export default function Header() {
                     const text = await response.text();
                     if (response.status !== 200) {
                         console.log("reponse not ok");
-
+                        
                     }
 
                     else {
@@ -43,44 +44,45 @@ export default function Header() {
         checkCookie();
     }, [setUsername]);
 
-    function toggleTheme() {
+    function toggleTheme(){
         const header = document.getElementById('header');
 
-        if (isDark === false) {
+        if(isDark === false){
             header.style.color = "#fff";
             header.style.backgroundColor = "#1c2833";
             setDark(true);
         }
 
-        else {
+        else{
             header.style.backgroundColor = "#fff";
             header.style.color = "black";
             setDark(false);
         }
     }
     function logout() {
-
+        
         removeCookie('token');
         setUsername(null);
-        return navigate("/");
+        navigate("/");
+        setAuthentication(false);
 
     }
 
 
     return (
-        <div className="header" id="header">
+        <div className="header" id = "header">
 
             <Link to="/" className="title"><p>ByteBlog</p></Link>
             <div className="side-buttons">
-
-                {username && <Link to="/createpost" > <button>Post</button></Link>}
-                {username && <button onClick={logout}>Logout</button>}
-                {!username && <Link to={"login"}> <button>Login</button></Link>}
-                {!username && <Link to={"register"}><button>Register</button></Link>}
-                <button onClick={toggleTheme} id="mode-button"><img
-                    src={isDark ? nightlogo : ligtlogo}
-                    alt="Dark Mode logo"
-                    id="mode-logo">
+                
+                {isAuthenticated && <Link to="/createpost" > <button>Post</button></Link>}
+                {isAuthenticated && <button onClick={logout}>Logout</button>}
+                {!isAuthenticated && <Link to={"login"}> <button>Login</button></Link>}
+                {!isAuthenticated && <Link to={"register"}><button>Register</button></Link>}
+                <button onClick={toggleTheme} id="mode-button"><img 
+                            src={isDark ? nightlogo : ligtlogo}
+                            alt="Dark Mode logo"
+                            id="mode-logo">
                 </img></button>
             </div>
         </div>

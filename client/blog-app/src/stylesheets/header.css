@@ -43,8 +43,8 @@
     border : none;
     margin: 0.5em 0.5em 0.5em 0.5em;
     float: right;
-    max-width: 10%;
-    height: 70%;
+    max-width: 3em;
+    max-height: 5em;
     background-color: inherit;
     color: inherit;
 }

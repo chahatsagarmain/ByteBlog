@@ -56,8 +56,6 @@ function App() {
       summary : "",
       file : null,
       description : "",
-      like : 0,
-      dislike : 0
     }
   )
   const [credential, setcredential] = useState([{
@@ -68,11 +66,11 @@ function App() {
   }]);
 
   const [isDark , setDark] = useState(false);
-
+  const [isAuthenticated , setAuthentication] = useState(false);
 
   return (
     <React.StrictMode>
-      <UserContext.Provider value={{ credential, setcredential ,username, setUsername , post , setPost , isDark , setDark , posts , setPosts}}>
+      <UserContext.Provider value={{isAuthenticated , setAuthentication, credential, setcredential ,username, setUsername , post , setPost , isDark , setDark , posts , setPosts}}>
         <RouterProvider router={router} />
       </UserContext.Provider>
     </React.StrictMode>
